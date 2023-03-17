@@ -1,0 +1,14 @@
+{
+  "name": "react-projects",
+  "version": "1.0.0",
+  "main": "index.js",
+  "workspaces":["packages/*"],
+  "scripts": {
+    "commit": "sui-mono commit"
+  },
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@s-ui/mono": "^2.34.0"
+  }
+}
