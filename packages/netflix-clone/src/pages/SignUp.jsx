@@ -1,23 +1,18 @@
 import React, { useState } from 'react'
-import { Link,useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { UserAuth } from "../context/AuthContext";
-const LogIn = () => {
-  const [email, setEmail] = useState('')
+const SignUp = () => {
+   const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
-   const [error, setError] = useState('')
-   const { user, logIn } = UserAuth()
+   const { user, signUp } = UserAuth()
    const navigate = useNavigate()
-
-   console.log("LOGIN ENTRA")
   const handleSubmit = async (e) =>{
     e.preventDefault()
-    setError('')
     try {
-        await logIn(email, password)
+        await signUp(email, password)
         navigate('/')
     } catch (error) {
       console.error(error)
-      setError(error)
     }
   }
   return (
@@ -31,42 +26,30 @@ const LogIn = () => {
         <div className='fixed w-full px-4 py-24 z-50'>
           <div className='max-w-[450px] h-[600px] mx-auto bg-black/75 text-white '>
             <div className='max-w-[320px] mx-auto py-16'>
-            <h2 className='text-3xl font-bold'>Sign In</h2>
-
-            {error 
-              ? <p className='p-3 bg-red-400 my-2'>{error}</p>
-              :null 
-            }
-
-            <form onSubmit={(e)=>handleSubmit(e)} className='w-full flex flex-col py-4'>
+            <h2 className='text-3xl font-bold'>Sign Up</h2>
+            <form onSubmit={handleSubmit} className='w-full flex flex-col py-4'>
                 <input 
-                  onChange={(e)=>{
-                    setEmail(e.target.value)
-                  }}
+                  onChange={(e)=>{setEmail(e.target.value)}} 
                   className='p-3 my-2 bg-gray-700 rounded' 
                   type="email" 
                   placeholder='Email' 
-                  autoComplete='email'
-                />
-                <input
-                  onChange={(e)=>{
-                    setPassword(e.target.value)
-                  }} 
+                  autoComplete='email'/>
+                <input 
+                  onChange={(e)=>{setPassword(e.target.value)}}
                   className='p-3 my-2 bg-gray-700 rounded' 
                   type="password" 
                   placeholder='Password' 
-                  autoComplete='current-passwor'
-                />
-                <button className='bg-red-600 py-3 my-6 rounded font-bold'>Sign In</button>
+                  autoComplete='current-passwor'/>
+                <button className='bg-red-600 py-3 my-6 rounded font-bold'>Sign up</button>
                 <div className='flex justify-between items-center text-sm text-gray-600'>
                   <p><input className='mr-2' type="checkbox" />Remember me</p>
                   <p>Need help?</p>
                 </div>
                 <p className='py-4'>
                   <span className='text-gray-600'>
-                    New to Netflix?
+                    Already subscribed to Netflix?
                   </span>{' '} 
-                  <Link to='/signup'>
+                  <Link to='/login'>
                     Sign In
                   </Link>
                 </p>
@@ -76,9 +59,8 @@ const LogIn = () => {
           </div>
         </div>
       </div>
-     </>
-
+    </>
   )
 }
 
-export default LogIn
+export default SignUp

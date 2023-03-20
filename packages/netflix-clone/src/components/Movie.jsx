@@ -3,7 +3,7 @@ import { FaHeart, FaRegHeart} from 'react-icons/fa'
 
 const Movie = ({movie}) => {
   const [like, setLike] = useState(false)
-  console.log(movie)
+  //console.log(movie)
   return (
     <React.Fragment>
 
